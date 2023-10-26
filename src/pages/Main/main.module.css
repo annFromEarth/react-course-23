@@ -1,0 +1,6 @@
+.main__wrapper {
+  flex-grow: 1;
+}
+.text {
+  color: rgb(73, 73, 150);
+}

@@ -1,6 +1,12 @@
 .searchInput__wrapper {
-  margin: 20px 0;
+  margin: 20px 0 60px 0;
   display: flex;
+  justify-content: center;
+}
+
+.searchInput {
+  min-width: 170px;
+  margin-right: 10px;
 }
 
 .searchButton {

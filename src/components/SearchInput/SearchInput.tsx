@@ -27,7 +27,7 @@ export default class SearchInput extends React.Component<Props, State> {
   render() {
     const searchLog = localStorage.getItem('searchLog')
       ? localStorage.getItem('searchLog')!
-      : 'What are you looking for?';
+      : 'Where would you like to go?';
     return (
       <div className={styles.searchInput__wrapper}>
         <input
@@ -36,6 +36,7 @@ export default class SearchInput extends React.Component<Props, State> {
           name="searchFor"
           onChange={(e) => this.setState({ inputData: e.target.value })}
           placeholder={searchLog}
+          className={styles.searchInput}
         />
         <button
           onClick={this.onSubmitHandler.bind(this)} // bind!!!

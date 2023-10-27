@@ -5,6 +5,12 @@ import styles from './header.module.css';
 
 export default class Header extends React.Component {
   render() {
-    return <div className={styles.header}>star wars searcher</div>;
+    return (
+      <div className={styles.header}>
+        star wars
+        <br />
+        <span className={styles.select}>planet</span> searcher
+      </div>
+    );
   }
 }

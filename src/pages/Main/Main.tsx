@@ -1,14 +1,34 @@
-/* eslint-disable react/prefer-stateless-function */
-import React from 'react';
+import React, { ReactNode } from 'react';
+import SearchInput from '../../components/SearchInput/SearchInput';
+import SearchResult from '../../components/SearchResult/SearchResult';
 
 import styles from './main.module.css';
 
-export default class Main extends React.Component {
+interface Props {
+  children: ReactNode;
+}
+
+interface State {
+  searchTarget: string;
+}
+
+export default class Main extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      searchTarget: '',
+    };
+  }
+
   render() {
+    const { searchTarget } = this.state;
+    const setSearchTarget = (target: string) =>
+      this.setState({ searchTarget: target });
+
     return (
       <div className={styles.main__wrapper}>
-        <div className={styles.searchInput__wrapper}>Search</div>
-        <div className={styles.searchResult__wrapper}>Result</div>
+        <SearchInput setSearchTarget={setSearchTarget} />
+        <SearchResult searchTarget={searchTarget} />
       </div>
     );
   }

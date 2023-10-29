@@ -29,11 +29,11 @@ export default class Main extends React.Component<Props, State> {
       this.setState({ searchTarget: target });
 
     return (
-      <div className={styles.main__wrapper}>
+      <main className={styles.main__wrapper}>
         <SearchInput setSearchTarget={setSearchTarget} />
         <ErrorButton />
         <SearchResult searchTarget={searchTarget} />
-      </div>
+      </main>
     );
   }
 }

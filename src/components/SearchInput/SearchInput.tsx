@@ -34,7 +34,9 @@ export default class SearchInput extends React.Component<Props, State> {
             type="search"
             id="searchFor"
             name="searchFor"
-            onChange={(e) => this.setState({ inputData: e.target.value })}
+            onChange={(e) =>
+              this.setState({ inputData: e.target.value.trim() })
+            }
             placeholder={searchLog}
             className={styles.searchInput}
           />

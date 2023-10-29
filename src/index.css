@@ -1,5 +1,6 @@
 body {
-  background-image: url(./starsBackgroundMirrored.jpg);
+  /* background-image: url(./starsBackgroundMirrored.jpg); */
+  background-image: url(./assets/images/starsBackgroundMirrored.jpg);
   background-repeat: repeat;
   color: white;
 }

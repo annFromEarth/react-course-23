@@ -16,7 +16,7 @@ interface IState {
 
 export default class SearchResult extends React.Component<IProps, IState> {
   currentSearchTarget = localStorage.getItem('searchLog')
-    ? JSON.stringify(localStorage.getItem('searchLog'))
+    ? localStorage.getItem('searchLog')
     : null;
 
   constructor(props: IProps) {
@@ -54,8 +54,7 @@ export default class SearchResult extends React.Component<IProps, IState> {
   }
 
   private async loadAsyncData(searchTarget: string | null) {
-    if (searchTarget)
-      localStorage.setItem('searchLog', JSON.stringify(searchTarget));
+    if (searchTarget) localStorage.setItem('searchLog', searchTarget);
     if (searchTarget === this.currentSearchTarget) {
       // Data for this id is already loading
     }

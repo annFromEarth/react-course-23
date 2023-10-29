@@ -29,21 +29,23 @@ export default class SearchInput extends React.Component<Props, State> {
       : 'Where would you like to go?';
     return (
       <div className={styles.searchInput__wrapper}>
-        <input
-          type="text"
-          id="searchFor"
-          name="searchFor"
-          onChange={(e) => this.setState({ inputData: e.target.value })}
-          placeholder={searchLog}
-          className={styles.searchInput}
-        />
-        <button
-          onClick={this.onSubmitHandler.bind(this)} // bind!!!
-          type="submit"
-          className={styles.searchButton}
-        >
-          Search
-        </button>
+        <form>
+          <input
+            type="search"
+            id="searchFor"
+            name="searchFor"
+            onChange={(e) => this.setState({ inputData: e.target.value })}
+            placeholder={searchLog}
+            className={styles.searchInput}
+          />
+          <button
+            onClick={this.onSubmitHandler.bind(this)} // bind!!!
+            type="submit"
+            className={styles.searchButton}
+          >
+            Search
+          </button>
+        </form>
       </div>
     );
   }

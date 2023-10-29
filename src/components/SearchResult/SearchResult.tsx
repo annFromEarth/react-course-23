@@ -78,11 +78,11 @@ export default class SearchResult extends React.Component<Props, State> {
   }
 
   render() {
-    const { searchTarget } = this.props;
+    // const { searchTarget } = this.props;
     const { searchResult } = this.state;
     return (
       <div className={styles.searchResult__wrapper}>
-        <div className={styles.searchResult__content}>{searchTarget}</div>
+        {/* <div className={styles.searchResult__content}>{searchTarget}</div> */}
         {!searchResult && <Spinner />}
         {searchResult &&
           (searchResult.length === 0 ? (

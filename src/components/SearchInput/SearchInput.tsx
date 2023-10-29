@@ -20,7 +20,6 @@ export default class SearchInput extends React.Component<Props, State> {
   onSubmitHandler() {
     const { setSearchTarget } = this.props;
     const { inputData } = this.state;
-    localStorage.setItem('searchLog', inputData);
     setSearchTarget(inputData);
   }
 

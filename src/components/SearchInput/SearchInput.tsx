@@ -2,15 +2,15 @@ import React from 'react';
 
 import styles from './searchInput.module.css';
 
-interface Props {
+interface IProps {
   setSearchTarget: (target: string) => void;
 }
-interface State {
+interface IState {
   inputData: string;
 }
 
-export default class SearchInput extends React.Component<Props, State> {
-  constructor(props: Props) {
+export default class SearchInput extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       inputData: '',

@@ -3,11 +3,11 @@ import React from 'react';
 import styles from './planetInfoDiv.module.css';
 import { Planet } from '../../services/types';
 
-interface Props {
+interface IProps {
   searchResult: Planet;
 }
 
-export default class PlanetInfoDiv extends React.Component<Props> {
+export default class PlanetInfoDiv extends React.Component<IProps> {
   render() {
     const { searchResult } = this.props;
 

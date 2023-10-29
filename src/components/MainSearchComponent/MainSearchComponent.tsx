@@ -2,16 +2,19 @@ import React, { ReactNode } from 'react';
 import SearchInput from '../SearchInput/SearchInput';
 import SearchResult from '../SearchResult/SearchResult';
 
-interface Props {
+interface IProps {
   children: ReactNode;
 }
 
-interface State {
+interface IState {
   searchTarget: string | null;
 }
 
-export default class MainSearchComponent extends React.Component<Props, State> {
-  constructor(props: Props) {
+export default class MainSearchComponent extends React.Component<
+  IProps,
+  IState
+> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       searchTarget: localStorage.getItem('searchLog')

@@ -6,20 +6,20 @@ import Spinner from '../Spinner/Spinner';
 
 import styles from './searchResult.module.css';
 
-interface Props {
+interface IProps {
   searchTarget: string | null;
 }
-interface State {
+interface IState {
   searchResult: Array<Planet> | null;
   searchTarget: string;
 }
 
-export default class SearchResult extends React.Component<Props, State> {
+export default class SearchResult extends React.Component<IProps, IState> {
   currentSearchTarget = localStorage.getItem('searchLog')
     ? localStorage.getItem('searchLog')
     : null;
 
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       searchResult: null,
@@ -30,7 +30,7 @@ export default class SearchResult extends React.Component<Props, State> {
     };
   }
 
-  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
+  static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
     if (nextProps.searchTarget !== prevState.searchTarget) {
       return {
         searchResult: null,

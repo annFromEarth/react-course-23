@@ -55,13 +55,21 @@ export default class PlanetInfoDiv extends React.Component<Props> {
         <div className={styles.planetInfoDiv_InfoContent}>
           <span className={styles.planetInfoDiv_InfoHeader}>Residents:</span>{' '}
           {searchResult.residents.map((el) => {
-            return <div key={el}>{el}</div>;
+            return (
+              <div className={styles.planetInfoDiv_listing} key={el}>
+                {el}
+              </div>
+            );
           })}
         </div>
         <div className={styles.planetInfoDiv_InfoContent}>
           <span className={styles.planetInfoDiv_InfoHeader}>Films:</span>{' '}
           {searchResult.films.map((el) => {
-            return <div key={el}>{el}</div>;
+            return (
+              <div className={styles.planetInfoDiv_listing} key={el}>
+                {el}
+              </div>
+            );
           })}
         </div>
         <div className={styles.planetInfoDiv_InfoContent}>

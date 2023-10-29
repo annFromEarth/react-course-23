@@ -57,11 +57,11 @@ export default class SearchResult extends React.Component<Props, State> {
   }
 
   private async loadAsyncData(searchTarget: string | null) {
-    console.log('loading');
-    console.log('currentST', this.currentSearchTarget);
-    console.log('ST', searchTarget);
+    // console.log('loading');
+    // console.log('currentST', this.currentSearchTarget);
+    // console.log('ST', searchTarget);
 
-    console.log('settingLS');
+    // console.log('settingLS');
     if (searchTarget && searchTarget !== '')
       localStorage.setItem('searchLog', searchTarget);
 
@@ -71,7 +71,7 @@ export default class SearchResult extends React.Component<Props, State> {
 
     this.currentSearchTarget = searchTarget;
     const data = await SearchService.searchData(searchTarget);
-    console.log(data);
+    // console.log(data);
     if (searchTarget === this.currentSearchTarget) {
       this.setState({ searchResult: data.results });
     }

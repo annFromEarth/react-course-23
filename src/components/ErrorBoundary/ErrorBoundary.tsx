@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import { Component, ErrorInfo, ReactNode } from 'react';
 import ErrorBoundaryComponent from './ErrorBoundaryComponent';
 

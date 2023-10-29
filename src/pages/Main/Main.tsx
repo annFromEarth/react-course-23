@@ -3,20 +3,23 @@ import SearchInput from '../../components/SearchInput/SearchInput';
 import SearchResult from '../../components/SearchResult/SearchResult';
 
 import styles from './main.module.css';
+import ErrorButton from '../../components/ErrorGenerator/ErrorButton';
 
 interface Props {
   children: ReactNode;
 }
 
 interface State {
-  searchTarget: string;
+  searchTarget: string | null;
 }
 
 export default class Main extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      searchTarget: '',
+      searchTarget: localStorage.getItem('searchLog')
+        ? localStorage.getItem('searchLog')
+        : '',
     };
   }
 
@@ -28,6 +31,7 @@ export default class Main extends React.Component<Props, State> {
     return (
       <div className={styles.main__wrapper}>
         <SearchInput setSearchTarget={setSearchTarget} />
+        <ErrorButton />
         <SearchResult searchTarget={searchTarget} />
       </div>
     );

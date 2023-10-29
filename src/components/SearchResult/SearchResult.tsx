@@ -16,7 +16,7 @@ interface IState {
 
 export default class SearchResult extends React.Component<IProps, IState> {
   currentSearchTarget = localStorage.getItem('searchLog')
-    ? localStorage.getItem('searchLog')
+    ? JSON.stringify(localStorage.getItem('searchLog'))
     : null;
 
   constructor(props: IProps) {
@@ -24,9 +24,6 @@ export default class SearchResult extends React.Component<IProps, IState> {
     this.state = {
       searchResult: null,
       searchTarget: '',
-      //   searchTarget: localStorage.getItem('searchLog')
-      //     ? localStorage.getItem('searchLog')
-      //     : '',
     };
   }
 
@@ -57,32 +54,23 @@ export default class SearchResult extends React.Component<IProps, IState> {
   }
 
   private async loadAsyncData(searchTarget: string | null) {
-    // console.log('loading');
-    // console.log('currentST', this.currentSearchTarget);
-    // console.log('ST', searchTarget);
-
-    // console.log('settingLS');
-    if (searchTarget && searchTarget !== '')
-      localStorage.setItem('searchLog', searchTarget);
-
+    if (searchTarget)
+      localStorage.setItem('searchLog', JSON.stringify(searchTarget));
     if (searchTarget === this.currentSearchTarget) {
       // Data for this id is already loading
     }
-
     this.currentSearchTarget = searchTarget;
     const data = await SearchService.searchData(searchTarget);
-    // console.log(data);
     if (searchTarget === this.currentSearchTarget) {
       this.setState({ searchResult: data.results });
     }
   }
 
   render() {
-    // const { searchTarget } = this.props;
     const { searchResult } = this.state;
+
     return (
       <div className={styles.searchResult__wrapper}>
-        {/* <div className={styles.searchResult__content}>{searchTarget}</div> */}
         {!searchResult && <Spinner />}
         {searchResult &&
           (searchResult.length === 0 ? (

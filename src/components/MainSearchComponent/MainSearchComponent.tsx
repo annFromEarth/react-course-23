@@ -18,7 +18,7 @@ export default class MainSearchComponent extends React.Component<
     super(props);
     this.state = {
       searchTarget: localStorage.getItem('searchLog')
-        ? localStorage.getItem('searchLog')
+        ? JSON.stringify(localStorage.getItem('searchLog'))
         : '',
     };
   }

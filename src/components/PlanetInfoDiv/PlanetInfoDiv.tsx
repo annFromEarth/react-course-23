@@ -13,7 +13,7 @@ export default class PlanetInfoDiv extends React.Component<IProps> {
 
     return (
       <div className={styles.planetInfoDiv__wrapper}>
-        <div className={styles.planetInfoDiv__name}>{searchResult.name}</div>
+        <div className={styles.planetInfoDiv__name}> {searchResult.name}</div>
         <div className={styles.planetInfoDiv_InfoContent}>
           <span className={styles.planetInfoDiv_InfoHeader}>Diameter:</span>{' '}
           {searchResult.diameter}

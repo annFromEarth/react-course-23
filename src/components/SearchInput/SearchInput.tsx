@@ -26,7 +26,7 @@ export default class SearchInput extends React.Component<IProps, IState> {
   render() {
     const searchLog = localStorage.getItem('searchLog')
       ? localStorage.getItem('searchLog')!
-      : 'Where would you like to go?';
+      : 'Where should we to go?';
     return (
       <div className={styles.searchInput__wrapper}>
         <form>
@@ -34,14 +34,12 @@ export default class SearchInput extends React.Component<IProps, IState> {
             type="search"
             id="searchFor"
             name="searchFor"
-            onChange={(e) =>
-              this.setState({ inputData: e.target.value.trim() })
-            }
+            onChange={(e) => this.setState({ inputData: e.target.value })}
             placeholder={searchLog}
             className={styles.searchInput}
           />
           <button
-            onClick={this.onSubmitHandler.bind(this)} // bind!!!
+            onClick={this.onSubmitHandler.bind(this)}
             type="submit"
             className={styles.searchButton}
           >

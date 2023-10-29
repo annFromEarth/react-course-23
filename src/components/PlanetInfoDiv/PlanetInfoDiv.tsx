@@ -52,34 +52,6 @@ export default class PlanetInfoDiv extends React.Component<IProps> {
           <span className={styles.planetInfoDiv_InfoHeader}>Population:</span>{' '}
           {searchResult.population}
         </div>
-        <div className={styles.planetInfoDiv_InfoContent}>
-          <span className={styles.planetInfoDiv_InfoHeader}>Residents:</span>{' '}
-          {searchResult.residents.map((el) => {
-            return (
-              <div className={styles.planetInfoDiv_listing} key={el}>
-                {el}
-              </div>
-            );
-          })}
-        </div>
-        <div className={styles.planetInfoDiv_InfoContent}>
-          <span className={styles.planetInfoDiv_InfoHeader}>Films:</span>{' '}
-          {searchResult.films.map((el) => {
-            return (
-              <div className={styles.planetInfoDiv_listing} key={el}>
-                {el}
-              </div>
-            );
-          })}
-        </div>
-        <div className={styles.planetInfoDiv_InfoContent}>
-          <span className={styles.planetInfoDiv_InfoHeader}>Created:</span>{' '}
-          {searchResult.created}
-        </div>
-        <div className={styles.planetInfoDiv_InfoContent}>
-          <span className={styles.planetInfoDiv_InfoHeader}>Edited:</span>{' '}
-          {searchResult.edited}
-        </div>
       </div>
     );
   }

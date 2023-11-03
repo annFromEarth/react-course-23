@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'DistantGalaxy';
+  font-weight: 900;
+  src:
+    local('DistantGalaxy'),
+    url(./fonts/DistantGalaxy/SfDistantGalaxyAlternate-OE4d.ttf)
+      format('truetype');
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* align-items: center; */
+  min-height: 95vh;
+  padding: 0 200px;
+}
+
+@media screen and (max-width: 1024px) {
+  #root {
+    padding: 0 100px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #root {
+    padding: 0 40px;
+  }
+}

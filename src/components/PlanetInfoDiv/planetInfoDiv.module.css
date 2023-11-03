@@ -1,0 +1,27 @@
+.planetInfoDiv__wrapper {
+  background-color: rgb(19, 19, 19);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 10px 0;
+  /* min-width: 300px; */
+  display: flex;
+  flex-direction: column;
+}
+
+.planetInfoDiv__name {
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  font-family: DistantGalaxy, Arial, serif;
+}
+
+.planetInfoDiv_InfoHeader {
+  color: rgb(133, 132, 133);
+}
+
+.planetInfoDiv_InfoContent {
+  margin-bottom: 5px;
+}
+
+.planetInfoDiv_listing {
+  display: inline-block;
+}

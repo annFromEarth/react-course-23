@@ -1,33 +1,21 @@
-import React from 'react';
+import { useState } from 'react';
 
 import styles from './errorButton.module.css';
 
-export default class ErrorButton extends React.Component<
-  Record<string, never>,
-  { generateError: boolean }
-> {
-  constructor(props: Record<string, never>) {
-    super(props);
-    this.state = { generateError: false };
+export default function ErrorButton() {
+  const [generateError, setGenerateError] = useState<boolean>(false);
+
+  if (generateError) {
+    throw new Error();
   }
 
-  generateError() {
-    this.setState({ generateError: true });
-  }
-
-  render() {
-    const { generateError } = this.state;
-    if (generateError) {
-      throw new Error();
-    }
-    return (
-      <button
-        onClick={this.generateError.bind(this)}
-        type="submit"
-        className={styles.errorButton}
-      >
-        Generate Error
-      </button>
-    );
-  }
+  return (
+    <button
+      onClick={() => setGenerateError(true)}
+      type="submit"
+      className={styles.errorButton}
+    >
+      Generate Error
+    </button>
+  );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import SearchService from '../../services/searchService';
 import PlanetInfoDiv from '../PlanetInfoDiv/PlanetInfoDiv';
 import { Planet } from '../../services/types';
@@ -6,80 +6,35 @@ import Spinner from '../Spinner/Spinner';
 
 import styles from './searchResult.module.css';
 
-interface IProps {
+export default function SearchResult({
+  searchTarget,
+}: {
   searchTarget: string | null;
-}
-interface IState {
-  searchResult: Array<Planet> | null;
-  searchTarget: string;
-}
+}) {
+  const [searchResult, setSearchResult] = useState<Array<Planet> | null>(null);
+  const [searchTargetLocal, setSearchTargetLocal] = useState<string | null>(
+    localStorage.getItem('searchLog') ? localStorage.getItem('searchLog') : ''
+  );
 
-export default class SearchResult extends React.Component<IProps, IState> {
-  currentSearchTarget = localStorage.getItem('searchLog')
-    ? localStorage.getItem('searchLog')
-    : null;
-
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      searchResult: null,
-      searchTarget: '',
+  useEffect(() => {
+    if (searchTarget) setSearchTargetLocal(searchTarget);
+    const loadAsyncData = async (searchTargetArg: string | null) => {
+      if (searchTargetArg) localStorage.setItem('searchLog', searchTargetArg);
+      const data = await SearchService.searchData(searchTargetArg);
+      setSearchResult(data.results);
     };
-  }
+    loadAsyncData(searchTargetLocal);
+  }, [searchTarget, searchTargetLocal]);
 
-  static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
-    if (nextProps.searchTarget !== prevState.searchTarget) {
-      return {
-        searchResult: null,
-        searchTarget: nextProps.searchTarget,
-      };
-    }
-    return null;
-  }
-
-  componentDidMount() {
-    const { searchTarget } = this.props;
-    this.loadAsyncData(searchTarget);
-  }
-
-  componentDidUpdate() {
-    const { searchResult, searchTarget } = this.state;
-    if (searchResult === null) {
-      this.loadAsyncData(searchTarget);
-    }
-  }
-
-  componentWillUnmount() {
-    this.currentSearchTarget = null;
-  }
-
-  private async loadAsyncData(searchTarget: string | null) {
-    if (searchTarget) localStorage.setItem('searchLog', searchTarget);
-    if (searchTarget === this.currentSearchTarget) {
-      // Data for this id is already loading
-    }
-    this.currentSearchTarget = searchTarget;
-    const data = await SearchService.searchData(searchTarget);
-    if (searchTarget === this.currentSearchTarget) {
-      this.setState({ searchResult: data.results });
-    }
-  }
-
-  render() {
-    const { searchResult } = this.state;
-
-    return (
-      <div className={styles.searchResult__wrapper}>
-        {!searchResult && <Spinner />}
-        {searchResult &&
-          (searchResult.length === 0 ? (
-            <>No data matches your request! </>
-          ) : (
-            searchResult.map((el) => {
+  return (
+    <div className={styles.searchResult__wrapper}>
+      {!searchResult && <Spinner />}
+      {searchResult &&
+        (searchResult.length === 0
+          ? 'No data matches your request!'
+          : searchResult.map((el) => {
               return <PlanetInfoDiv key={el.name} searchResult={el} />;
-            })
-          ))}
-      </div>
-    );
-  }
+            }))}
+    </div>
+  );
 }

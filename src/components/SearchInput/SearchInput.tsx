@@ -1,52 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './searchInput.module.css';
 
-interface IProps {
-  setSearchTarget: (target: string) => void;
-}
-interface IState {
-  inputData: string;
-}
+export default function SearchInput({
+  setSearchTarget,
+}: {
+  setSearchTarget: React.Dispatch<React.SetStateAction<string | null>>;
+}) {
+  const [inputData, setInputData] = useState<string>('');
 
-export default class SearchInput extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      inputData: '',
-    };
-  }
-
-  onSubmitHandler() {
-    const { setSearchTarget } = this.props;
-    const { inputData } = this.state;
+  const onSubmitHandler = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
     setSearchTarget(inputData);
-  }
+  };
 
-  render() {
-    const searchLog = localStorage.getItem('searchLog')
-      ? localStorage.getItem('searchLog')!
-      : 'Where should we to go?';
-    return (
-      <div className={styles.searchInput__wrapper}>
-        <form>
-          <input
-            type="search"
-            id="searchFor"
-            name="searchFor"
-            onChange={(e) => this.setState({ inputData: e.target.value })}
-            placeholder={searchLog}
-            className={styles.searchInput}
-          />
-          <button
-            onClick={this.onSubmitHandler.bind(this)}
-            type="submit"
-            className={styles.searchButton}
-          >
-            Search
-          </button>
-        </form>
-      </div>
-    );
-  }
+  const searchLog = localStorage.getItem('searchLog')
+    ? localStorage.getItem('searchLog')!
+    : 'Where should we to go?';
+
+  return (
+    <div className={styles.searchInput__wrapper}>
+      <form>
+        <input
+          type="search"
+          id="searchFor"
+          name="searchFor"
+          onChange={(e) => setInputData(e.target.value)}
+          placeholder={searchLog}
+          className={styles.searchInput}
+        />
+        <button
+          onClick={onSubmitHandler}
+          type="submit"
+          className={styles.searchButton}
+        >
+          Search
+        </button>
+      </form>
+    </div>
+  );
 }

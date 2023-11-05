@@ -17,7 +17,7 @@ export type Planet = {
 
 export type ApiData = {
   count: number;
-  next: string | null;
-  previous: string | null;
+  next: RequestInfo | URL | null;
+  previous: RequestInfo | URL | null;
   results: Array<Planet>;
 };

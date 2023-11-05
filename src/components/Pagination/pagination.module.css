@@ -1,0 +1,20 @@
+.pagination__wrapper {
+  display: flex;
+  list-style-type: none;
+  align-self: center;
+  padding: 0;
+}
+
+.pagination__wrapper > * {
+  padding-right: 5px;
+}
+
+.pagination__pageNumber {
+  color: greenyellow;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+.pagination__pageNumber:hover {
+  color: orangered;
+}

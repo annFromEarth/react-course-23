@@ -1,9 +1,9 @@
-import { baseAPI, errorAPI } from '../constants/apiEndpoints';
+import { baseAPI, errorAPI } from '../../constants/apiEndpoints';
 import { ApiData } from './types';
 
 export default class SearchService {
-  static async getData(): Promise<ApiData> {
-    const response = await fetch(`${baseAPI}planets/`, {
+  static async getPlanetData(target: string): Promise<ApiData> {
+    const response = await fetch(`${baseAPI}planets/?search=${target}`, {
       headers: {},
     });
     const data: ApiData = await response.json();

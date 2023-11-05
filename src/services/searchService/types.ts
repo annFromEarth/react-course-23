@@ -6,11 +6,11 @@ export type Planet = {
   films: Array<string>;
   gravity: string;
   name: string;
-  orbitalPeriod: string;
+  orbital_period: string;
   population: string;
   residents: Array<string>;
-  rotationPeriod: string;
-  surfaceWater: string;
+  rotation_period: string;
+  surface_water: string;
   terrain: string;
   url: string;
 };

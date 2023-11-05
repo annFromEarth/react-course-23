@@ -1,27 +1,8 @@
 import React from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Spinner from './components/Spinner/Spinner';
-import ErrorPage from './pages/ErrorPage/ErrorPage';
-import RootLayout from './layouts/RootLayout';
-import Home from './pages/Home/Home';
+import { RouterProvider } from 'react-router-dom';
+import router from './services/router/router';
 
 import './App.css';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RootLayout />,
-    loader: Spinner,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: '/',
-        element: <Home />,
-        loader: Spinner,
-      },
-    ],
-  },
-]);
 
 function App() {
   return (

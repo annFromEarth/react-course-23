@@ -22,21 +22,24 @@ export default function SearchInput({
 
   return (
     <div className={styles.searchInput__wrapper}>
-      <form>
+      <form id="search-form" role="search">
         <input
           type="search"
-          id="searchFor"
-          name="searchFor"
+          id="q"
+          name="q"
           onChange={(e) => setInputData(e.target.value)}
           placeholder={searchLog}
           className={styles.searchInput}
         />
+      </form>
+      <form method="post">
         <button
           onClick={onSubmitHandler}
           type="submit"
           className={styles.searchButton}
         >
-          Search
+          {' '}
+          Search{' '}
         </button>
       </form>
     </div>

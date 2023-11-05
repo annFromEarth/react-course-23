@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { LoaderFunction, createBrowserRouter } from 'react-router-dom';
 import RootLayout from '../../layouts/RootLayout';
 import ErrorPage from '../../pages/ErrorPage/ErrorPage';
 import Home from '../../pages/Home/Home';
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
           {
             path: ':planetName',
             element: <PlanetDetails />,
-            loader: planetDetailsLoader,
+            loader: planetDetailsLoader as LoaderFunction,
           },
         ],
       },

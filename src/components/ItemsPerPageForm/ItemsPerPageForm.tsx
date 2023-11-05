@@ -28,7 +28,7 @@ export default function ItemsPerPageForm({
           type="number"
           min="1"
           max="10"
-          placeholder="1 to 10"
+          placeholder={`1 to 10, current = ${itemsPerPage}`}
           onChange={(e) => setInputData(Number(e.target.value))}
         />
       </form>

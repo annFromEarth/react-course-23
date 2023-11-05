@@ -9,8 +9,11 @@ export default function MainSearchComponent() {
 
   return (
     <>
-      <SearchInput setSearchTarget={setSearchTarget} />
-      <SearchResult searchTarget={searchTarget} />
+      <SearchInput
+        searchTarget={searchTarget}
+        setSearchTarget={setSearchTarget}
+      />
+      <SearchResult />
     </>
   );
 }

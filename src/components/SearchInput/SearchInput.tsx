@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import styles from './searchInput.module.css';
 
 export default function SearchInput({
+  searchTarget,
   setSearchTarget,
 }: {
+  searchTarget: string | null;
   setSearchTarget: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
   const [inputData, setInputData] = useState<string>('');
@@ -13,6 +15,7 @@ export default function SearchInput({
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
+    if (searchTarget) localStorage.setItem('SearchTargetCurrent', searchTarget);
     setSearchTarget(inputData);
   };
 

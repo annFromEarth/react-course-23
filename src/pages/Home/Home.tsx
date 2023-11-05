@@ -14,7 +14,10 @@ export default function Home() {
     <main className={styles.main__wrapper}>
       <SearchTargetContext.Provider value={searchTarget}>
         <ErrorButton />
-        <SearchInput setSearchTarget={setSearchTarget} />
+        <SearchInput
+          setSearchTarget={setSearchTarget}
+          searchTarget={searchTarget}
+        />
         <SearchResult />
       </SearchTargetContext.Provider>
     </main>

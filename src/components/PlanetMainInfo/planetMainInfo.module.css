@@ -12,6 +12,13 @@
   font-size: 1.3em;
   margin-bottom: 20px;
   font-family: DistantGalaxy, Arial, serif;
+  color: white;
+  text-decoration: none;
+  transition: ease-in-out 0.2s;
+}
+
+.planetInfoDiv__name:hover {
+  color: greenyellow;
 }
 
 .planetInfoDiv_InfoHeader {

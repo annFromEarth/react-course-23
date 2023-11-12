@@ -32,50 +32,50 @@ export default function PlanetDetails() {
 
   return (
     <div className={styles.planetDetail__wrapper}>
-      {navigation.state === 'loading' && <Spinner />}
-      {navigation.state !== 'loading' && (
+      {navigation.state === 'loading' ? (
+        <Spinner />
+      ) : (
         <>
-          {' '}
           <div className={styles.planetInfoDiv__wrapper}>
             <div className={styles.planetInfoDiv__name}> {planetName}</div>
             <div className={styles.planetInfoDiv_InfoContent}>
-              <span className={styles.planetInfoDiv_InfoHeader}>Diameter:</span>{' '}
+              <span className={styles.planetInfoDiv_InfoHeader}>Diameter:</span>
               {diameter}
             </div>
             <div className={styles.planetInfoDiv_InfoContent}>
-              <span className={styles.planetInfoDiv_InfoHeader}>Gravity:</span>{' '}
+              <span className={styles.planetInfoDiv_InfoHeader}>Gravity:</span>
               {gravity}
             </div>
             <div className={styles.planetInfoDiv_InfoContent}>
               <span className={styles.planetInfoDiv_InfoHeader}>
                 Orbital period:
-              </span>{' '}
+              </span>
               {orbital_period}
             </div>
             <div className={styles.planetInfoDiv_InfoContent}>
               <span className={styles.planetInfoDiv_InfoHeader}>
                 Rotation Period:
-              </span>{' '}
+              </span>
               {rotation_period}
             </div>
             <div className={styles.planetInfoDiv_InfoContent}>
-              <span className={styles.planetInfoDiv_InfoHeader}>Climate:</span>{' '}
+              <span className={styles.planetInfoDiv_InfoHeader}>Climate:</span>
               {climate}
             </div>
             <div className={styles.planetInfoDiv_InfoContent}>
               <span className={styles.planetInfoDiv_InfoHeader}>
                 Surface water:
-              </span>{' '}
+              </span>
               {surface_water}
             </div>
             <div className={styles.planetInfoDiv_InfoContent}>
-              <span className={styles.planetInfoDiv_InfoHeader}>Terrain</span>:{' '}
+              <span className={styles.planetInfoDiv_InfoHeader}>Terrain:</span>
               {terrain}
             </div>
             <div className={styles.planetInfoDiv_InfoContent}>
               <span className={styles.planetInfoDiv_InfoHeader}>
                 Population:
-              </span>{' '}
+              </span>
               {population}
             </div>
           </div>

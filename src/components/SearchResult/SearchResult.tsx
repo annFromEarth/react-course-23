@@ -32,21 +32,17 @@ export default function SearchResult() {
       setSearchResult(null);
       if (searchTargetArg) localStorage.setItem('searchLog', searchTargetArg);
       const data = await SearchService.searchData(searchTargetArg);
-      let accumulatedData = data.results;
+      const accumulatedData = data.results;
       let nextURL: RequestInfo | URL | null = data.next;
 
       while (nextURL !== null) {
-        // console.log('next going');
         /* eslint-disable no-await-in-loop */
         const dataNext = await SearchService.searchDataFromUrl(nextURL);
-        accumulatedData = accumulatedData.concat(dataNext.results);
+        accumulatedData.push(...dataNext.results);
         nextURL = dataNext.next;
-        // console.log('accData', accumulatedData);
-        // console.log(nextURL);
       }
 
       setSearchResult(accumulatedData);
-      //   console.log('accDataFinal', accumulatedData);
     };
     loadAsyncData(searchTarget);
   }, [searchTarget, itemsPerPage]);

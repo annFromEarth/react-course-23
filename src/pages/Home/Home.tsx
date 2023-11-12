@@ -8,7 +8,7 @@ import styles from './home.module.css';
 
 export default function Home() {
   const [searchTarget, setSearchTarget] = useState<string | null>(
-    localStorage.getItem('searchLog') ? localStorage.getItem('searchLog') : ''
+    localStorage.getItem('searchLog') ?? ''
   );
   return (
     <main className={styles.main__wrapper}>

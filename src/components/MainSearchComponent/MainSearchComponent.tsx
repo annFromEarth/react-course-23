@@ -4,7 +4,7 @@ import SearchResult from '../SearchResult/SearchResult';
 
 export default function MainSearchComponent() {
   const [searchTarget, setSearchTarget] = useState<string | null>(
-    localStorage.getItem('searchLog') ? localStorage.getItem('searchLog') : ''
+    localStorage.getItem('searchLog') ?? ''
   );
 
   return (

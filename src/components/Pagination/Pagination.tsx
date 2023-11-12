@@ -15,6 +15,7 @@ export default function Pagination({
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i += 1) {
     pageNumbers.push(i);
   }
+
   return (
     <ul className={styles.pagination__wrapper}>
       {pageNumbers.map((pageNumber) => (

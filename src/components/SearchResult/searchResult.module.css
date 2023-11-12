@@ -1,0 +1,10 @@
+.searchResult__wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.searchResult__list__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

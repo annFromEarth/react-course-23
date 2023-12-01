@@ -6,7 +6,6 @@ import styles from "./main.module.css";
 export default function Main() {
   return (
     <>
-      <div>I am a Main Page</div>
       <Link className={styles.pageLink} to="form-controlled">
         Go to controlled form
       </Link>

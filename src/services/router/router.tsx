@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../../layouts/RootLayout";
 import Main from "../../pages/Main/Main";
-import ControlledForm from "../../pages/ControlledForm/ControlledForm";
-import UncontrolledForm from "../../pages/UncontrolledForm/UncontrolledForm";
 import ErrorPage from "../../pages/ErrorPage";
+import ControlledFormPage from "../../pages/ControlledForm/ControlledFormPage";
+import UncontrolledFormPage from "../../pages/UncontrolledForm/UncontrolledFormPage";
 
 const router = createBrowserRouter([
   {
@@ -17,11 +17,11 @@ const router = createBrowserRouter([
       },
       {
         path: "form-controlled",
-        element: <ControlledForm />,
+        element: <ControlledFormPage />,
       },
       {
         path: "form-uncontrolled",
-        element: <UncontrolledForm />,
+        element: <UncontrolledFormPage />,
       },
     ],
   },

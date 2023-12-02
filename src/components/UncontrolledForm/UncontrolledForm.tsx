@@ -1,21 +1,46 @@
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../services/redux/hook";
+import {
+  updateAge,
+  updateCountry,
+  updateEmail,
+  updateGender,
+  updateImage,
+  updateName,
+  updatePassword,
+  updateTerms,
+} from "../../services/redux/uncontrolledFormSlice";
+
 import style from "./uncontrolledForm.module.css";
 
 export default function UncontrolledForm() {
-  const nameInputRef = useRef(null);
-  const ageInputRef = useRef(null);
-  const emailInputRef = useRef(null);
-  const passwordInputRef = useRef(null);
-  const passwordInputRepeatRef = useRef(null);
-  const genderInputRef = useRef(null);
-  const TandCInputRef = useRef(null);
-  const imageInputRef = useRef(null);
-  const countrySelectRef = useRef(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  const ageInputRef = useRef<HTMLInputElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRepeatRef = useRef<HTMLInputElement>(null);
+  const genderInputRef = useRef<HTMLSelectElement>(null);
+  const TandCInputRef = useRef<HTMLInputElement>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
+  const countrySelectRef = useRef<HTMLSelectElement>(null);
 
-  function handleSubmit() {
-    if (nameInputRef.current && nameInputRef.current.value)
-      alert(`Name: ${nameInputRef.current.value}`);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  function handleSubmit(event: SubmitEvent) {
+    event.preventDefault();
+    dispatch(updateName(nameInputRef.current!.value));
+    dispatch(updateAge(ageInputRef.current!.value));
+    dispatch(updateEmail(emailInputRef.current!.value));
+    dispatch(updatePassword(passwordInputRef.current!.value));
+    dispatch(updateGender(genderInputRef.current!.value));
+    dispatch(updateTerms(TandCInputRef.current!.value));
+    dispatch(updateImage(imageInputRef.current!.value));
+    dispatch(updateCountry(countrySelectRef.current!.value));
+    navigate("../");
   }
+
   return (
     <>
       <div className={style.formHeader}>Uncontrolled Form</div>

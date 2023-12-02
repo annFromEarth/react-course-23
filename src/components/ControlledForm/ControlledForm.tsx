@@ -1,44 +1,70 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import {
+  updateAge,
+  updateCountry,
+  updateEmail,
+  updateGender,
+  updateImage,
+  updateName,
+  updatePassword,
+  updateTerms,
+} from "../../services/redux/controlledFormSlice";
+import { useAppDispatch } from "../../services/redux/hook";
+import { IFormInput } from "../../types/types";
+
 import style from "./controlledForm.module.css";
 
-enum GenderEnum {
-  female = "female",
-  male = "male",
-  other = "other",
-}
-
-enum CountryEnum {
-  uk = "UK",
-  us = "US",
-  it = "Italy",
-}
-
-interface IFormInput {
-  nameInput: string;
-  ageInput: number;
-  emailInput: string;
-  password: string;
-  passwordRepeat: string;
-  gender: GenderEnum;
-  termsAmdConditions: boolean;
-  image: string;
-  country: CountryEnum;
-}
 export default function ControlledForm() {
   const { register, handleSubmit } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  //   function encodeImageFileAsURL(element) {
+  //     const file = element.files[0];
+  //     const reader = new FileReader();
+  //     reader.onloadend = function () {
+  //       console.log("RESULT", reader.result);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    if (data.country && data.ageInput && data.gender) {
+      dispatch(updateName(data.nameInput));
+      dispatch(updateAge(data.ageInput));
+      dispatch(updateEmail(data.emailInput));
+      dispatch(updatePassword(data.password));
+      dispatch(updateGender(data.gender));
+      dispatch(updateTerms(data.termsAmdConditions.toString()));
+      dispatch(updateImage(data.image[0].name));
+      dispatch(updateCountry(data.country));
+      navigate("../");
+    }
+  };
+
   return (
     <>
       <div className={style.formHeader}>Controlled Form</div>
       <form className={style.formContainer} onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="name">
           Name:
-          <input {...register("nameInput")} type="text" id="name" name="name" />
+          <input
+            {...register("nameInput")}
+            type="text"
+            id="name"
+            name="nameInput"
+          />
         </label>
         <label htmlFor="age">
           Age:
-          <input {...register("ageInput")} type="number" id="age" name="age" />
+          <input
+            {...register("ageInput")}
+            type="number"
+            id="age"
+            name="ageInput"
+          />
         </label>
         <label htmlFor="email">
           Email:
@@ -46,7 +72,7 @@ export default function ControlledForm() {
             {...register("emailInput")}
             type="email"
             id="email"
-            name="email"
+            name="emailInput"
           />
         </label>
         <label htmlFor="password">
@@ -80,7 +106,7 @@ export default function ControlledForm() {
             {...register("termsAmdConditions")}
             type="checkbox"
             id="T&C"
-            name="T&C"
+            name="termsAmdConditions"
           />
         </label>
         <label htmlFor="image">

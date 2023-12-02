@@ -48,6 +48,7 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react/prefer-stateless-function": "off",
     "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
+    "import/no-named-as-default": 0,
   },
   settings: {
     react: {

@@ -70,27 +70,32 @@ export default function ControlledForm() {
     <>
       <div className={style.formHeader}>Controlled Form</div>
       <form className={style.formContainer} onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="name">
+        <label htmlFor="nameInput">
           Name:
           <input
             {...register("nameInput")}
             type="text"
-            id="name"
+            id="nameInput"
             name="nameInput"
           />
           <p className={style.error}>{errors.nameInput?.message}</p>
         </label>
-        <label htmlFor="age">
+        <label htmlFor="ageInput">
           Age:
-          <input {...register("ageInput")} type="number" id="age" name="age" />
+          <input
+            {...register("ageInput")}
+            type="number"
+            id="ageInput"
+            name="ageInput"
+          />
           <p className={style.error}>{errors.ageInput?.message}</p>
         </label>
-        <label htmlFor="email">
+        <label htmlFor="emailInput">
           Email:
           <input
             {...register("emailInput")}
             type="email"
-            id="email"
+            id="emailInput"
             name="emailInput"
           />
           <p className={style.error}>{errors.emailInput?.message}</p>
@@ -116,7 +121,7 @@ export default function ControlledForm() {
           />
           <p className={style.error}>{errors.confirmPassword?.message}</p>
         </label>
-        <label htmlFor="gender-select">
+        <label htmlFor="gender">
           Gender
           <label htmlFor="male">
             Male
@@ -138,12 +143,12 @@ export default function ControlledForm() {
           </label>
           <p className={style.error}>{errors.gender?.message}</p>
         </label>
-        <label htmlFor="T&C">
+        <label htmlFor="termsAndConditions">
           I have read and accept T&C:
           <input
             {...register("termsAndConditions")}
             type="checkbox"
-            id="T&C"
+            id="termsAndConditions"
             name="termsAndConditions"
           />
           <p className={style.error}>{errors.termsAndConditions?.message}</p>

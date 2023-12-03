@@ -24,7 +24,7 @@ export default function PasswordStrengthCheck({ password }: PropsPassword) {
 
     switch (count) {
       case 0:
-        setMessage("Enter your password");
+        setMessage("");
         setColor("black");
         break;
       case 1:

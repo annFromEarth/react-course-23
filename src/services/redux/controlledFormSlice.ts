@@ -30,6 +30,9 @@ export const uncontrolledFormSlice = createSlice({
     updatePassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
+    updateConfirmPassword: (state, action: PayloadAction<string>) => {
+      state.confirmPassword = action.payload;
+    },
     updateGender: (state, action: PayloadAction<string>) => {
       state.gender = action.payload;
     },
@@ -53,6 +56,7 @@ export const {
   updateAge,
   updateEmail,
   updatePassword,
+  updateConfirmPassword,
   updateGender,
   updateTerms,
   updateImage,

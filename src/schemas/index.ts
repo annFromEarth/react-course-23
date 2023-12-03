@@ -1,18 +1,9 @@
 import { object, string, number, ref, boolean, mixed, InferType } from "yup";
 import countries from "../util/countries";
 
-// const passwordStrengthRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+/;
-// function isMinPasswordStrength(value: string) {
-//   return passwordStrengthRegex.test(value);
-// }
-
 export const schemaNewUser = object().shape({
   nameInput: string()
     .required("This field is required")
-    .matches(
-      /^[\p{Lu}\p{Lt}].*$/u,
-      "Name should start with an uppercase letter",
-    )
     .test("empty", "Name is required", (value) => value !== ""),
   ageInput: number()
     .min(18, "Your age must be between 18 and 100")
@@ -34,7 +25,7 @@ export const schemaNewUser = object().shape({
     .test("empty", "This field is required", (value) => value !== ""),
   confirmPassword: string()
     .required("Please confirm your password")
-    .oneOf([ref("password")], "Passwords must match"), // give default value?
+    .oneOf([ref("password")], "Passwords must match"),
   gender: string().required("This field is required"),
   termsAndConditions: boolean()
     .required("You must accept the terms and conditions")

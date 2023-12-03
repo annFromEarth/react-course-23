@@ -8,21 +8,31 @@ export default function ComparisonTable() {
     emailInput,
     password,
     gender,
-    termsAmdConditions,
+    termsAndConditions,
     image,
     country,
   } = useAppSelector((state) => state.controlledForm);
 
-  const {
-    nameInputUnctrl,
-    ageInputUnctrl,
-    emailInputUnctrl,
-    passwordUnctrl,
-    genderUnctrl,
-    termsAmdConditionsUnctrl,
-    imageUnctrl,
-    countryUnctrl,
-  } = useAppSelector((state) => state.uncontrolledForm);
+  const nameInputUnctrl = useAppSelector(
+    (state) => state.uncontrolledForm.nameInput,
+  );
+  const ageInputUnctrl = useAppSelector(
+    (state) => state.uncontrolledForm.ageInput,
+  );
+  const emailInputUnctrl = useAppSelector(
+    (state) => state.uncontrolledForm.emailInput,
+  );
+  const passwordUnctrl = useAppSelector(
+    (state) => state.uncontrolledForm.password,
+  );
+  const genderUnctrl = useAppSelector((state) => state.uncontrolledForm.gender);
+  const termsAndConditionsUnctrl = useAppSelector(
+    (state) => state.uncontrolledForm.termsAndConditions,
+  );
+  const imageUnctrl = useAppSelector((state) => state.uncontrolledForm.image);
+  const countryUnctrl = useAppSelector(
+    (state) => state.uncontrolledForm.country,
+  );
 
   return (
     <div className={style.tableContainer}>
@@ -46,11 +56,27 @@ export default function ComparisonTable() {
       <div className={style.rowControlled}>{gender}</div>
       <div className={style.rowUncontrolled}>{genderUnctrl}</div>
       <div className={style.rowHeader}>T&C</div>
-      <div className={style.rowControlled}>{termsAmdConditions}</div>
-      <div className={style.rowUncontrolled}>{termsAmdConditionsUnctrl}</div>
+      <div className={style.rowControlled}>{termsAndConditions}</div>
+      <div className={style.rowUncontrolled}>{termsAndConditionsUnctrl}</div>
       <div className={style.rowHeader}>image</div>
-      <div className={style.rowControlled}>{image}</div>
-      <div className={style.rowUncontrolled}>{imageUnctrl}</div>
+      <div className={style.rowControlled}>
+        {typeof image === "string" ? (
+          <img className={style.image} src={image} alt="from controlled form" />
+        ) : (
+          <span>No image</span>
+        )}
+      </div>
+      <div className={style.rowUncontrolled}>
+        {typeof imageUnctrl === "string" ? (
+          <img
+            className={style.image}
+            src={imageUnctrl}
+            alt="from uncontrolled form"
+          />
+        ) : (
+          <span>No image</span>
+        )}
+      </div>
       <div className={style.rowHeader}>country</div>
       <div className={style.rowControlled}>{country}</div>
       <div className={style.rowUncontrolled}>{countryUnctrl}</div>

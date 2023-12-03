@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import style from "./passwordStrengthCheck.module.css";
 
 type PropsPassword = {
   password: string;
@@ -46,7 +47,9 @@ export default function PasswordStrengthCheck({ password }: PropsPassword) {
   }, [hasLower, hasNumber, hasSpecial, hasUpper, password]);
   return (
     <div>
-      <p style={{ color }}>{message}</p>
+      <p className={style.message} style={{ color }}>
+        {message}
+      </p>
     </div>
   );
 }

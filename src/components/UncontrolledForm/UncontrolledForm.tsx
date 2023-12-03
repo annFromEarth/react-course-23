@@ -139,17 +139,17 @@ export default function UncontrolledForm() {
           <p className={style.error}>{errors.password}</p>
         </label>
         <label htmlFor="confirmPassword">
-          Repeat password:{" "}
+          Confirm your password:
           <input
             type="password"
             id="confirmPassword"
-            name="password"
+            name="confirmPassword"
             ref={confirmPasswordRef}
           />
           <p className={style.error}>{errors.confirmPassword}</p>
         </label>
         <label htmlFor="gender-select">
-          Gender
+          Gender:
           <label htmlFor="male">
             Male
             <input

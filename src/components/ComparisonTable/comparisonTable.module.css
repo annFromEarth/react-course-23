@@ -42,3 +42,9 @@
   color: green;
   justify-self: start;
 }
+
+.image {
+  max-width: 200px;
+  width: auto;
+  height: 100px;
+}

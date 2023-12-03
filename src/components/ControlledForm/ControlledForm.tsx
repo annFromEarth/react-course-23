@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import {
   updateAge,
+  updateConfirmPassword,
   updateCountry,
   updateEmail,
   updateGender,
@@ -54,6 +55,7 @@ export default function ControlledForm() {
         dispatch(updateAge(dispatchData.ageInput!));
         dispatch(updateEmail(dispatchData.emailInput!));
         dispatch(updatePassword(dispatchData.password!));
+        dispatch(updateConfirmPassword(dispatchData.confirmPassword!));
         dispatch(updateGender(dispatchData.gender!));
         dispatch(updateTerms(dispatchData.termsAndConditions!));
         dispatch(updateImage(dispatchData.image!));
@@ -80,12 +82,7 @@ export default function ControlledForm() {
         </label>
         <label htmlFor="age">
           Age:
-          <input
-            {...register("ageInput")}
-            type="number"
-            id="age"
-            name="ageInput"
-          />
+          <input {...register("ageInput")} type="number" id="age" name="age" />
           <p className={style.error}>{errors.ageInput?.message}</p>
         </label>
         <label htmlFor="email">
@@ -110,12 +107,12 @@ export default function ControlledForm() {
           <p className={style.error}>{errors.password?.message}</p>
         </label>
         <label htmlFor="confirmPassword">
-          Repeat password:
+          Confirm your password:
           <input
             {...register("confirmPassword")}
             type="password"
             id="confirmPassword"
-            name="password"
+            name="confirmPassword"
           />
           <p className={style.error}>{errors.confirmPassword?.message}</p>
         </label>

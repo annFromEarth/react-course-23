@@ -23,3 +23,8 @@
   margin: 20px auto;
   background-color: rgb(155, 191, 207);
 }
+
+.error {
+  color: red;
+  font-size: 0.8em;
+}

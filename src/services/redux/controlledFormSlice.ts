@@ -1,27 +1,27 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { CountryEnum, GenderEnum, IFormInputStore } from "../../types/types";
+import { IFormInput } from "../../types/types";
 
-const initialState: IFormInputStore = {
-  nameInput: "",
-  ageInput: "",
-  emailInput: "",
-  password: "",
-  passwordRepeat: "",
-  gender: null,
-  termsAmdConditions: "",
-  image: "",
-  country: null,
+const initialState: IFormInput = {
+  nameInput: undefined,
+  ageInput: undefined,
+  emailInput: undefined,
+  password: undefined,
+  confirmPassword: undefined,
+  gender: undefined,
+  termsAndConditions: false,
+  image: null,
+  country: undefined,
 };
 
-export const controlledFormSlice = createSlice({
+export const uncontrolledFormSlice = createSlice({
   name: "controlledFormSlice",
   initialState,
   reducers: {
     updateName: (state, action: PayloadAction<string>) => {
       state.nameInput = action.payload;
     },
-    updateAge: (state, action: PayloadAction<string>) => {
+    updateAge: (state, action: PayloadAction<number | string>) => {
       state.ageInput = action.payload;
     },
     updateEmail: (state, action: PayloadAction<string>) => {
@@ -30,16 +30,19 @@ export const controlledFormSlice = createSlice({
     updatePassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
-    updateGender: (state, action: PayloadAction<GenderEnum>) => {
+    updateGender: (state, action: PayloadAction<string>) => {
       state.gender = action.payload;
     },
-    updateTerms: (state, action: PayloadAction<string>) => {
-      state.termsAmdConditions = action.payload;
+    updateTerms: (state, action: PayloadAction<boolean>) => {
+      state.termsAndConditions = action.payload;
     },
-    updateImage: (state, action: PayloadAction<string>) => {
+    updateImage: (
+      state,
+      action: PayloadAction<string | ArrayBuffer | null | FileList | File>,
+    ) => {
       state.image = action.payload;
     },
-    updateCountry: (state, action: PayloadAction<CountryEnum>) => {
+    updateCountry: (state, action: PayloadAction<string>) => {
       state.country = action.payload;
     },
   },
@@ -54,6 +57,6 @@ export const {
   updateTerms,
   updateImage,
   updateCountry,
-} = controlledFormSlice.actions;
+} = uncontrolledFormSlice.actions;
 
-export default controlledFormSlice.reducer;
+export default uncontrolledFormSlice.reducer;

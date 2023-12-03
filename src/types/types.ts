@@ -1,8 +1,4 @@
-export enum GenderEnum {
-  female = "female",
-  male = "male",
-  other = "other",
-}
+export type Gender = "female" | "male" | "other";
 
 export enum CountryEnum {
   uk = "UK",
@@ -11,39 +7,15 @@ export enum CountryEnum {
 }
 
 export interface IFormInput {
-  nameInput: string;
-  ageInput: string;
-  emailInput: string;
-  password: string;
-  passwordRepeat: string;
-  gender: GenderEnum | null;
-  termsAmdConditions: string;
-  image: FileUpload[];
-  country: CountryEnum | null;
-}
-
-export interface IFormInputStore {
-  nameInput: string;
-  ageInput: string;
-  emailInput: string;
-  password: string;
-  passwordRepeat: string;
-  gender: GenderEnum | null;
-  termsAmdConditions: string;
-  image: string;
-  country: CountryEnum | null;
-}
-
-export interface IFormInputUnctrl {
-  nameInputUnctrl: string;
-  ageInputUnctrl: string;
-  emailInputUnctrl: string;
-  passwordUnctrl: string;
-  passwordRepeatUnctrl: string;
-  genderUnctrl: GenderEnum | null;
-  termsAmdConditionsUnctrl: string;
-  imageUnctrl: string;
-  countryUnctrl: CountryEnum | null;
+  nameInput: string | undefined;
+  ageInput: number | string | undefined;
+  emailInput: string | undefined;
+  password: string | undefined;
+  confirmPassword: string | undefined;
+  gender: string | undefined;
+  termsAndConditions: boolean | undefined;
+  image: string | ArrayBuffer | null | FileList | File;
+  country: string | undefined;
 }
 
 export type FileUpload = {

@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import {
   updateAge,
@@ -13,34 +15,52 @@ import {
 } from "../../services/redux/controlledFormSlice";
 import { useAppDispatch } from "../../services/redux/hook";
 import { IFormInput } from "../../types/types";
+import schemaNewUser from "../../schemas";
 
 import style from "./controlledForm.module.css";
+import CountryAutocomplete from "../CountryAutocomplete/CountryAutocomplete";
+import PasswordStrengthCheck from "../PasswordStrengthCheck/PasswordStrengthCheck";
 
 export default function ControlledForm() {
-  const { register, handleSubmit } = useForm<IFormInput>();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  //   function encodeImageFileAsURL(element) {
-  //     const file = element.files[0];
-  //     const reader = new FileReader();
-  //     reader.onloadend = function () {
-  //       console.log("RESULT", reader.result);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    watch,
+    control,
+  } = useForm({
+    resolver: yupResolver(schemaNewUser),
+    mode: "all",
+  });
+
+  const password = watch("password");
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    if (data.country && data.ageInput && data.gender) {
-      dispatch(updateName(data.nameInput));
-      dispatch(updateAge(data.ageInput));
-      dispatch(updateEmail(data.emailInput));
-      dispatch(updatePassword(data.password));
-      dispatch(updateGender(data.gender));
-      dispatch(updateTerms(data.termsAmdConditions.toString()));
-      dispatch(updateImage(data.image[0].name));
-      dispatch(updateCountry(data.country));
-      navigate("../");
+    let file: string | ArrayBuffer | null = null;
+    const reader = new FileReader();
+    if (data.image && data.image instanceof File) {
+      reader.readAsDataURL(data.image);
+      reader.onloadend = () => {
+        file = reader.result;
+        const dispatchData = {
+          ...data,
+          image: file,
+        };
+
+        dispatch(updateName(dispatchData.nameInput!));
+        dispatch(updateAge(dispatchData.ageInput!));
+        dispatch(updateEmail(dispatchData.emailInput!));
+        dispatch(updatePassword(dispatchData.password!));
+        dispatch(updateGender(dispatchData.gender!));
+        dispatch(updateTerms(dispatchData.termsAndConditions!));
+        dispatch(updateImage(dispatchData.image!));
+        dispatch(updateCountry(dispatchData.country!));
+
+        navigate("/");
+      };
     }
   };
 
@@ -56,6 +76,7 @@ export default function ControlledForm() {
             id="name"
             name="nameInput"
           />
+          <p className={style.error}>{errors.nameInput?.message}</p>
         </label>
         <label htmlFor="age">
           Age:
@@ -65,6 +86,7 @@ export default function ControlledForm() {
             id="age"
             name="ageInput"
           />
+          <p className={style.error}>{errors.ageInput?.message}</p>
         </label>
         <label htmlFor="email">
           Email:
@@ -74,53 +96,100 @@ export default function ControlledForm() {
             id="email"
             name="emailInput"
           />
+          <p className={style.error}>{errors.emailInput?.message}</p>
         </label>
         <label htmlFor="password">
-          Password:{" "}
+          Password:
           <input
             {...register("password")}
             type="password"
             id="password"
             name="password"
           />
+          <PasswordStrengthCheck password={password || ""} />
+          <p className={style.error}>{errors.password?.message}</p>
         </label>
-        <label htmlFor="passwordRepeat">
+        <label htmlFor="confirmPassword">
           Repeat password:
           <input
-            {...register("passwordRepeat")}
+            {...register("confirmPassword")}
             type="password"
-            id="passwordRepeat"
+            id="confirmPassword"
             name="password"
           />
+          <p className={style.error}>{errors.confirmPassword?.message}</p>
         </label>
         <label htmlFor="gender-select">
-          Gender:
-          <select {...register("gender")} id="gender-select" name="gender">
-            <option value="male">M</option>
-            <option value="female">F</option>
-          </select>
+          Gender
+          <label htmlFor="male">
+            Male
+            <input
+              id="male"
+              type="radio"
+              value="male"
+              {...register("gender")}
+            />
+          </label>
+          <label htmlFor="female">
+            Female
+            <input
+              id="female"
+              type="radio"
+              value="female"
+              {...register("gender")}
+            />
+          </label>
+          <p className={style.error}>{errors.gender?.message}</p>
         </label>
         <label htmlFor="T&C">
           I have read and accept T&C:
           <input
-            {...register("termsAmdConditions")}
+            {...register("termsAndConditions")}
             type="checkbox"
             id="T&C"
-            name="termsAmdConditions"
+            name="termsAndConditions"
           />
+          <p className={style.error}>{errors.termsAndConditions?.message}</p>
         </label>
         <label htmlFor="image">
-          Image:{" "}
-          <input {...register("image")} type="file" id="image" name="image" />
+          Image
+          <Controller
+            name="image"
+            control={control}
+            render={({ field }) => (
+              <input
+                id="image"
+                type="file"
+                onChange={(e) => {
+                  if (e.target.files) {
+                    field.onChange(e.target.files[0]);
+                  }
+                }}
+                onBlur={field.onBlur}
+              />
+            )}
+          />
+          <p className={style.error}>{errors.image?.message}</p>
         </label>
-        <label htmlFor="country-select">
-          Select a country:
-          <select {...register("country")} id="country-select" name="country">
-            <option value="uk">UK</option>
-            <option value="us">US</option>
-          </select>
+        <label htmlFor="country">
+          <Controller
+            name="country"
+            control={control}
+            render={({ field }) => (
+              <CountryAutocomplete
+                value={field.value}
+                onChange={field.onChange}
+                onBlur={field.onBlur}
+              />
+            )}
+          />
+          <p className={style.error}>{errors.country?.message}</p>
         </label>
-        <button className={style.submitButton} type="submit">
+        <button
+          className={style.submitButton}
+          type="submit"
+          disabled={!isValid}
+        >
           Submit
         </button>
       </form>
